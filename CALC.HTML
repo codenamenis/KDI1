@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+  <style>
+    #calc { width:220px; margin:10px auto; font-family:sans-serif; }
+    #disp { width:100%; height:30px; text-align:right; margin-bottom:5px; }
+    button { width:45px; height:35px; margin:2px; }
+  </style>
+</head>
+<body>
+<div id="calc">
+  <input type="text" id="disp" readonly>
+  <div>
+    <button onclick="addVal('7')">7</button>
+    <button onclick="addVal('8')">8</button>
+    <button onclick="addVal('9')">9</button>
+    <button onclick="addOp('/')">/</button><br>
+    <button onclick="addVal('4')">4</button>
+    <button onclick="addVal('5')">5</button>
+    <button onclick="addVal('6')">6</button>
+    <button onclick="addOp('*')">*</button><br>
+    <button onclick="addVal('1')">1</button>
+    <button onclick="addVal('2')">2</button>
+    <button onclick="addVal('3')">3</button>
+    <button onclick="addOp('-')">-</button><br>
+    <button onclick="addVal('0')">0</button>
+    <button onclick="clr()">C</button>
+    <button onclick="calc()">=</button>
+    <button onclick="addOp('+')">+</button>
+  </div>
+</div>
+<script>
+let expr = "";
+function addVal(v){
+  expr += v;
+  document.getElementById("disp").value = expr;
+}
+function addOp(o){
+  if(!expr || /[+\-*/]$/.test(expr)) return;
+  expr += o;
+  document.getElementById("disp").value = expr;
+}
+function clr(){
+  expr = "";
+  document.getElementById("disp").value = "";
+}
+function calc(){
+  try {
+    expr = eval(expr).toString();
+  } catch(e) {
+    expr = "Err";
+  }
+  document.getElementById("disp").value = expr;
+}
+</script>
+</body>
+</html>
